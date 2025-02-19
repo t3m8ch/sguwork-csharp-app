@@ -8,11 +8,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\BusinessLogic.Services\BusinessLogic.Services.csproj" />
+      <ProjectReference Include="..\BusinessLogic.Abstract\BusinessLogic.Abstract.csproj" />
+      <ProjectReference Include="..\BusinessLogic.Impl\BusinessLogic.Impl.csproj" />
       <ProjectReference Include="..\Common.Entities\Common.Entities.csproj" />
       <ProjectReference Include="..\DataAccess.Abstract\DataAccess.Abstract.csproj" />
-      <ProjectReference Include="..\DataAccess.File\DataAccess.File.csproj" />
-      <ProjectReference Include="..\DataAccess.Json\DataAccess.Json.csproj" />
+      <ProjectReference Include="..\DataAccess.TextRepo\DataAccess.TextRepo.csproj" />
+      <ProjectReference Include="..\DataAccess.JsonRepo\DataAccess.JsonRepo.csproj" />
     </ItemGroup>
 
 </Project>
