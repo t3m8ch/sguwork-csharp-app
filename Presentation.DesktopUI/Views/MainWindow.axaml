@@ -15,6 +15,56 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    <ScrollViewer>
+    <StackPanel Margin="10" Spacing="10">
+      <TextBlock Text="Список транспорта:" FontWeight="Bold"/>
+      <ListBox ItemsSource="{Binding Transports}" Height="200" />
 
+      <Separator/>
+
+      <TextBlock Text="Добавить транспорт:" FontWeight="Bold"/>
+      <StackPanel Orientation="Horizontal" Spacing="5">
+        <TextBlock Text="Тип:" VerticalAlignment="Center" Width="80"/>
+        <ComboBox ItemsSource="{Binding TransportTypes}" SelectedItem="{Binding SelectedTransportType}" Width="150"/>
+      </StackPanel>
+      <StackPanel Orientation="Horizontal" Spacing="5">
+        <TextBlock Text="Бренд:" VerticalAlignment="Center" Width="80"/>
+        <TextBox Text="{Binding Brand}" Width="150"/>
+      </StackPanel>
+      <StackPanel Orientation="Horizontal" Spacing="5">
+        <TextBlock Text="Номер:" VerticalAlignment="Center" Width="80"/>
+        <TextBox Text="{Binding Number}" Width="150"/>
+      </StackPanel>
+      <StackPanel Orientation="Horizontal" Spacing="5">
+        <TextBlock Text="Скорость:" VerticalAlignment="Center" Width="80"/>
+        <TextBox Text="{Binding Speed}" Width="150"/>
+      </StackPanel>
+      <StackPanel Orientation="Horizontal" Spacing="5">
+        <TextBlock Text="Вместимость:" VerticalAlignment="Center" Width="80"/>
+        <TextBox Text="{Binding Capacity}" Width="150"/>
+      </StackPanel>
+      <StackPanel Orientation="Horizontal" Spacing="5"
+                  IsVisible="{Binding IsMotorcycle}">
+        <TextBlock Text="Есть коляска:" VerticalAlignment="Center" Width="80"/>
+        <CheckBox IsChecked="{Binding HasSidecar}" />
+      </StackPanel>
+      <StackPanel Orientation="Horizontal" Spacing="5"
+                  IsVisible="{Binding IsTruck}">
+        <TextBlock Text="Есть прицеп:" VerticalAlignment="Center" Width="80"/>
+        <CheckBox IsChecked="{Binding HasTrailer}" />
+      </StackPanel>
+      <Button Content="Добавить" Command="{Binding AddCommand}" />
+
+      <Separator/>
+
+      <TextBlock Text="Фильтр по вместимости:" FontWeight="Bold"/>
+      <StackPanel Orientation="Horizontal" Spacing="5">
+        <ComboBox ItemsSource="{Binding FilterOperators}" SelectedItem="{Binding SelectedFilterOperator}" Width="60"/>
+        <TextBox Text="{Binding FilterCapacity}" Width="100"/>
+        <Button Content="Применить" Command="{Binding FilterCommand}" />
+      </StackPanel>
+
+      <Button Content="Сохранить" Command="{Binding SaveCommand}" />
+    </StackPanel>
+  </ScrollViewer>
 </Window>
