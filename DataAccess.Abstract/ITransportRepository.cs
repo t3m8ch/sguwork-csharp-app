@@ -7,5 +7,6 @@ public interface ITransportRepository
     List<Transport> GetAll();
     List<Transport> GetWithCapacity(Func<int, bool> predicate);
     void Add(Transport transport);
+    void Remove(Transport transport);
     void Save();
 }

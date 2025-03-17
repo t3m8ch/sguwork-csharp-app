@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reactive;
+using System.Reactive.Linq;
 using Avalonia.Controls;
 using BusinessLogic.Abstract;
 using BusinessLogic.Impl;
@@ -33,10 +34,18 @@ public partial class MainWindowViewModel : ReactiveObject
         get => _filterCapacity;
         set => this.RaiseAndSetIfChanged(ref _filterCapacity, value);
     }
+    
+    private Transport? _selectedTransport;
+    public Transport? SelectedTransport
+    {
+        get => _selectedTransport;
+        set => this.RaiseAndSetIfChanged(ref _selectedTransport, value);
+    }
 
     public ReactiveCommand<Unit, Unit> SaveCommand { get; }
     public ReactiveCommand<Unit, Unit> FilterCommand { get; }
     public ReactiveCommand<Window, Unit> OpenAddTransportWindowCommand { get; }
+    public ReactiveCommand<Unit, Unit> DeleteCommand { get; }
 
     public MainWindowViewModel()
     {
@@ -65,6 +74,8 @@ public partial class MainWindowViewModel : ReactiveObject
             var addWindow = new AddTransportWindow { DataContext = addVm };
             addWindow.ShowDialog(owner);
         });
+        DeleteCommand = ReactiveCommand.Create(DeleteSelectedTransport, 
+            this.WhenAnyValue(x => x.SelectedTransport).Select(x => x != null));
     }
 
     private void FilterTransports()
@@ -85,6 +96,16 @@ public partial class MainWindowViewModel : ReactiveObject
         foreach (var transport in filtered)
         {
             Transports.Add(transport);
+        }
+    }
+    
+    private void DeleteSelectedTransport()
+    {
+        if (SelectedTransport != null)
+        {
+            _transportService.Remove(SelectedTransport); // Вызов метода сервиса
+            Transports.Remove(SelectedTransport);        // Удаление из списка
+            SelectedTransport = null;                    // Сброс выбора
         }
     }
 }

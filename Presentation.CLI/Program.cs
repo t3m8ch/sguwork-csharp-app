@@ -10,6 +10,7 @@ var app = new CommandDispatcher(
     new CreateCommand(service), 
     new GetAllCommand(service),
     new GetWithCapacityCommand(service),
+    new RemoveCommand(service),
     new SaveCommand(service));
     
 app.RunLoop();

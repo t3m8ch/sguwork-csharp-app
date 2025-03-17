@@ -36,6 +36,11 @@ public class JsonTransportRepository : ITransportRepository
     {
         _transports.Add(transport);
     }
+
+    public void Remove(Transport transport)
+    {
+        _transports.Remove(transport);
+    }
     
     public void Save()
     {

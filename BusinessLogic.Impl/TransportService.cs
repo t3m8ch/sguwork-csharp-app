@@ -21,6 +21,11 @@ public class TransportService(ITransportRepository transportRepository) : ITrans
         transportRepository.Add(transport);
     }
 
+    public void Remove(Transport transport)
+    {
+        transportRepository.Remove(transport);
+    }
+
     public void Save()
     {
         transportRepository.Save();

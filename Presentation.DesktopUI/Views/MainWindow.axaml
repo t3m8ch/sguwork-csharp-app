@@ -11,8 +11,15 @@
         <ScrollViewer>
                 <StackPanel Margin="10" Spacing="10">
                         <TextBlock Text="Список транспорта:" FontWeight="Bold"/>
-                        <ListBox ItemsSource="{Binding Transports}" Height="200" />
+                        <ListBox ItemsSource="{Binding Transports}" 
+                                 SelectedItem="{Binding SelectedTransport}"
+                                 Height="200" />
 
+                        <Separator/>
+                        
+                        <Button Content="Удалить выбранный транспорт" 
+                                Command="{Binding DeleteCommand}" />
+                                
                         <Separator/>
 
                         <Button x:Name="AddTransportButton" Content="Добавить транспорт" Command="{Binding OpenAddTransportWindowCommand}" />
@@ -25,6 +32,8 @@
                                 <TextBox Text="{Binding FilterCapacity}" Width="100"/>
                                 <Button Content="Применить" Command="{Binding FilterCommand}" />
                         </StackPanel>
+                        
+                        <Separator/>
 
                         <Button Content="Сохранить" Command="{Binding SaveCommand}" />
                 </StackPanel>
