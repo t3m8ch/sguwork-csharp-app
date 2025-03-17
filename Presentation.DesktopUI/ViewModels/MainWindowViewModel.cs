@@ -71,7 +71,7 @@ public partial class MainWindowViewModel : ReactiveObject
                     Transports.Add(newTransport);
                 }
             });
-            var addWindow = new AddTransportWindow { DataContext = addVm };
+            var addWindow = new AddTransportWindow(addVm);
             addWindow.ShowDialog(owner);
         });
         DeleteCommand = ReactiveCommand.Create(DeleteSelectedTransport, 
@@ -99,13 +99,18 @@ public partial class MainWindowViewModel : ReactiveObject
         }
     }
     
-    private void DeleteSelectedTransport()
+    private async void DeleteSelectedTransport()
     {
-        if (SelectedTransport != null)
-        {
-            _transportService.Remove(SelectedTransport); // Вызов метода сервиса
-            Transports.Remove(SelectedTransport);        // Удаление из списка
-            SelectedTransport = null;                    // Сброс выбора
-        }
+        if (SelectedTransport == null) return;
+        
+        var confirmVm = new ConfirmDeleteViewModel();
+        var confirmWindow = new ConfirmDeleteWindow(confirmVm);
+        
+        var result = await confirmWindow.ShowDialog<bool>(App.MainWindow);
+        if (!result) return;
+
+        _transportService.Remove(SelectedTransport);
+        Transports.Remove(SelectedTransport);
+        SelectedTransport = null;
     }
 }

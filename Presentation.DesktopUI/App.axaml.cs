@@ -11,6 +11,8 @@ namespace Presentation.DesktopUI;
 
 public partial class App : Application
 {
+    public static MainWindow MainWindow;
+
     public override void Initialize()
     {
         AvaloniaXamlLoader.Load(this);
@@ -27,6 +29,8 @@ public partial class App : Application
             {
                 DataContext = new MainWindowViewModel(),
             };
+
+            MainWindow = desktop.MainWindow as MainWindow;
         }
 
         base.OnFrameworkInitializationCompleted();

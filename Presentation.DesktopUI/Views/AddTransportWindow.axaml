@@ -6,7 +6,9 @@
         mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="300"
         x:Class="Presentation.DesktopUI.Views.AddTransportWindow"
         Title="AddTransportWindow"
-        x:DataType="viewModels:AddTransportViewModel">
+        x:DataType="viewModels:AddTransportViewModel"
+        Width="400"
+        Height="500">
         <StackPanel Margin="10" Spacing="10">
                 <TextBlock Text="Добавить транспорт:" FontWeight="Bold"/>
                 <StackPanel Orientation="Horizontal" Spacing="5">

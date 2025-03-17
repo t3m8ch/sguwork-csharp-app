@@ -8,14 +8,13 @@ namespace Presentation.DesktopUI.Views;
 
 public partial class AddTransportWindow : Window
 {
-    public AddTransportWindow()
+    public AddTransportWindow(AddTransportViewModel addTransportViewModel)
     {
         InitializeComponent();
-        if (DataContext is AddTransportViewModel vm)
-        {
-            var observer = new AddCommandObserver(this);
-            vm.AddCommand.Subscribe(_ => Close());
-        }
+        DataContext = addTransportViewModel;
+            
+        var observer = new AddCommandObserver(this);
+        addTransportViewModel.AddCommand.Subscribe(_ => Close());
     }
 
     private void InitializeComponent()
