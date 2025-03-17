@@ -1,0 +1,42 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModels="clr-namespace:Presentation.DesktopUI.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="Presentation.DesktopUI.Views.AddTransportWindow"
+        Title="AddTransportWindow"
+        x:DataType="viewModels:AddTransportViewModel">
+        <StackPanel Margin="10" Spacing="10">
+                <TextBlock Text="Добавить транспорт:" FontWeight="Bold"/>
+                <StackPanel Orientation="Horizontal" Spacing="5">
+                        <TextBlock Text="Тип:" VerticalAlignment="Center" Width="80"/>
+                        <ComboBox ItemsSource="{Binding TransportTypes}" SelectedItem="{Binding SelectedTransportType}" Width="150"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Spacing="5">
+                        <TextBlock Text="Бренд:" VerticalAlignment="Center" Width="80"/>
+                        <TextBox Text="{Binding Brand}" Width="150"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Spacing="5">
+                        <TextBlock Text="Номер:" VerticalAlignment="Center" Width="80"/>
+                        <TextBox Text="{Binding Number}" Width="150"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Spacing="5">
+                        <TextBlock Text="Скорость:" VerticalAlignment="Center" Width="80"/>
+                        <TextBox Text="{Binding Speed}" Width="150"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Spacing="5">
+                        <TextBlock Text="Вместимость:" VerticalAlignment="Center" Width="80"/>
+                        <TextBox Text="{Binding Capacity}" Width="150"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Spacing="5" IsVisible="{Binding IsMotorcycle}">
+                        <TextBlock Text="Есть коляска:" VerticalAlignment="Center" Width="80"/>
+                        <CheckBox IsChecked="{Binding HasSidecar}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Spacing="5" IsVisible="{Binding IsTruck}">
+                        <TextBlock Text="Есть прицеп:" VerticalAlignment="Center" Width="80"/>
+                        <CheckBox IsChecked="{Binding HasTrailer}" />
+                </StackPanel>
+                <Button Content="Добавить" Command="{Binding AddCommand}" />
+        </StackPanel>
+</Window>
