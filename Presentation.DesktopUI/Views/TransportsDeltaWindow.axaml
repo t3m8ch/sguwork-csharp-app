@@ -1,0 +1,23 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModels="clr-namespace:Presentation.DesktopUI.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="Presentation.DesktopUI.Views.TransportsDeltaWindow"
+        x:DataType="viewModels:TransportsDeltaViewModel"
+        Title="TransportsDeltaWindow"
+        Width="600"
+        Height="500">
+    <StackPanel Margin="10" Spacing="10">
+        <TextBlock Text="Добавленный транспорт:" FontWeight="Bold" />
+        <ListBox ItemsSource="{Binding AddedTransports}" 
+                 Height="200" />
+
+        <Separator/>
+        
+        <TextBlock Text="Удалённый транспорт:" FontWeight="Bold" />
+        <ListBox ItemsSource="{Binding RemovedTransports}" 
+                 Height="200" />
+    </StackPanel>
+</Window>

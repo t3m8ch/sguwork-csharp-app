@@ -59,7 +59,19 @@ public partial class MainWindowViewModel : ReactiveObject
 
         SelectedFilterOperator = FilterOperators.First();
 
-        SaveCommand = ReactiveCommand.Create(() => _transportService.Save());
+        SaveCommand = ReactiveCommand.Create(() =>
+        {
+            _transportService.Save();
+            var deltaViewModel = new TransportsDeltaViewModel(
+                _transportService.AddedTransports, 
+                _transportService.RemovedTransports
+            );
+            var deltaWindow = new TransportsDeltaWindow(deltaViewModel);
+            deltaWindow.ShowDialog(App.MainWindow);
+            
+            _transportService.ResetAddedTransports();
+            _transportService.ResetRemovedTransports();
+        });
         FilterCommand = ReactiveCommand.Create(FilterTransports);
         OpenAddTransportWindowCommand = ReactiveCommand.Create<Window>(owner =>
         {
